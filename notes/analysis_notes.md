@@ -24,64 +24,66 @@ experience of the visit.
 ## Findings
 
 ### Consideration today
-Mean consideration is 6.38 out of 10 on a base of 2,341. 35.3% score 8 to 10 and
-would strongly consider FreshFork. 13.5% score 1 to 3 and have effectively ruled
+Mean consideration is 6.45 out of 10 on a base of 2,341. 35.6% score 8 to 10 and
+would strongly consider FreshFork. 12.8% score 1 to 3 and have effectively ruled
 it out. The remaining half sit in the middle and are the winnable group.
 
-Consideration falls with age, from 6.85 among 25-34s to around 5.3 among the
-over-55s. Gender makes little difference (6.44 female, 6.26 male).
+Consideration falls with age, from 7.00 among 25-34s to around 5.3 among the
+over-55s. Gender makes little difference (6.48 female, 6.38 male).
 
 ### FreshFork is strong on fame, weak on affinity
 The highest-scoring statements are about awareness rather than experience: an
-established brand (7.67), a place for kids and families (7.16), a brand I see and
-hear a lot about (6.89), good value for money (6.70).
+established brand (7.69), a place for kids and families (7.17), a brand I see and
+hear a lot about (6.90), good value for money (6.72).
 
 The lowest are about personal connection and how people feel about eating there:
-food I feel good about eating (5.68), a positive contribution to my community
+food I feel good about eating (5.67), a positive contribution to my community
 (5.87), an ethical and responsible company (5.96), a brand for someone like me
-(6.11). FreshFork is famous and family-associated, but people do not feel it is
+(6.13). FreshFork is famous and family-associated, but people do not feel it is
 for them.
 
 ### The halo problem
 Ranking statements by their correlation with consideration looks convincing: the
-top ten all sit between 0.71 and 0.73. The ranking is misleading.
+top ten all sit between 0.72 and 0.74. The ranking is misleading.
 
-The 32 statements correlate with each other at 0.636 on average, and the weakest
-pair still correlates at 0.53. A single underlying dimension explains 64.8% of
-all variance across them, with the second component adding only 7.0%. Respondents
+The 32 statements correlate with each other at 0.684 on average, and the weakest
+pair still correlates at 0.57. A single underlying dimension explains 69.5% of
+all variance across them, with the second component adding only 7.2%. Respondents
 are largely answering one question 32 times: do I like FreshFork.
 
 Each person's own average across the 32 statements predicts consideration at
 r = 0.82, higher than any individual statement manages.
 
-Ordinary regression on this data produces 6 negative coefficients out of 32,
-clustered in trust, brand love, positive opinion, reputation and community — every
-one of which correlates positively with consideration on its own. VIF, the
-standard collinearity check, maxes at 4.1 and would have passed the model as sound.
+Ordinary regression on this data produces 10 negative coefficients out of 32,
+clustered in trust, positive opinion, brand love and community — affinity claims
+that every one of which correlates positively with consideration on its own. VIF,
+the standard collinearity check, maxes at 5.3 and would have passed the model as
+sound.
 
 Subtracting each person's own average isolates what remains. Ethical and
-responsible falls from +0.59 to -0.12 and contribution to community from +0.58 to
--0.14, both reversing. Reputation falls from +0.58 to -0.14. Great tasting food
-holds at +0.10 and enjoying the visit at +0.13. Once general goodwill is removed,
+responsible falls from +0.60 to -0.15 and contribution to community from +0.60 to
+-0.14, both reversing. Reputation falls from +0.67 to -0.01: it vanishes entirely,
+a lagging read-out of consideration rather than a driver of it. Great tasting food
+holds at +0.12 and enjoying the visit at +0.13. Once general goodwill is removed,
 the corporate claims collapse while product and experience survive.
 
 ### Four dimensions, not thirty-two
 Factor analysis groups the 32 statements into four: product and experience (15
 statements), company and ethics (10), fame and familiarity (4), and service (3).
 
-Regressing consideration on those four explains 72.4% of the variation on a base
-of 1,544. Product and experience takes 60.0% of that. Fame takes 16.8%, company
-and ethics 12.4%, service 10.9%.
+Regressing consideration on those four explains 70.4% of the variation on a base
+of 1,544. Product and experience takes 58.9% of that. Fame takes 15.4%, company
+and ethics 14.6%, service 11.1%.
 
-Set against current performance, the mismatch is the finding. Fame scores 7.07,
+Set against current performance, the mismatch is the finding. Fame scores 7.08,
 FreshFork's best result, and is a distant second in importance. Product scores
 6.34 and explains most of consideration.
 
-The ranking is stable: rerun without the 94 straightliners and the four shares
+The ranking is stable: rerun without the 95 straightliners and the four shares
 move by at most 1.4 points.
 
 ### Young families are warmer, and it is not only an age effect
-Young families score 6.8 on consideration against 6.1 for everyone else. Because
+Young families score 6.99 on consideration against 6.09 for everyone else. Because
 parents of under-10s skew younger and consideration falls with age, this needed
 testing.
 
@@ -90,27 +92,28 @@ entangled: 25-34 contains 366 young families against only 60 others, and the
 over-55 bands contain almost none. The 35-44 band supports the cleanest
 comparison, with 438 young families against 275 others.
 
-Within 35-44, young families score 6.69 against 6.30 (t = 2.04, p = 0.042). The
-lift is partly an age effect — younger parents score higher for reasons unrelated
-to having children — but a significant gap remains once age is held constant, so
-it is not *only* age. Extending to 35-54 gives the same picture (6.63 vs 6.05).
+Within 35-44, young families score 6.88 against 6.32 (t = 2.97, p = 0.003). Part
+of the raw lift is an age effect — younger parents score higher for reasons
+unrelated to having children — but a clear, significant gap remains once age is
+held constant, so it is not *only* age. Extending to 35-54 gives the same picture
+(6.82 vs 6.04).
 
 ### Young families want the same things, they are just warmer
 Running the same four-factor model separately on each group, the weightings
-barely move. Product takes 58.3% among young families against 61.1% among
-everyone else; fame 17.3% against 16.6%. Differences this small are not worth
+barely move. Product takes 56.9% among young families against 60.1% among
+everyone else; fame 17.0% against 15.2%. Differences this small are not worth
 claiming.
 
 Where they differ is in how they already rate FreshFork. Every factor shows a
-positive gap: company and ethics +0.57, service +0.55, product +0.54, fame +0.30.
+positive gap: company and ethics +0.57, product +0.55, service +0.55, fame +0.31.
 
 At the statement level the largest gaps are convenience and experience — makes me
-feel like a valued customer (+0.73), a company I feel good about (+0.73), makes my
-life easier (+0.70), a place I enjoy visiting (+0.70). The two *smallest* gaps of
-all 32 are an established brand (+0.20) and a place for kids and families (+0.19).
-Parents of young children do not believe FreshFork is a family place any more
-strongly than anyone else does. It is settled, not distinctive — and "makes my
-life easier" is what they actually notice.
+feel like a valued customer (+0.74), makes my life easier (+0.72), a company I
+feel good about (+0.72), a place I enjoy visiting (+0.70). The two *smallest* gaps
+of all 32 are an established brand (+0.20) and a place for kids and families
+(+0.22). Parents of young children do not believe FreshFork is a family place any
+more strongly than anyone else does. It is settled, not distinctive — and "makes
+my life easier" is what they actually notice.
 
 ---
 

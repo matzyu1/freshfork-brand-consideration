@@ -80,8 +80,8 @@ STATEMENTS = [
     ("B1c_30",  "C", 6.38, 0.050, 0.41, "{b} has a good reputation"),
     ("B1c_31",  "S", 6.41, 0.010, 0.27, "{b} has good customer service"),
     ("B1c_32",  "S", 6.48, 0.008, 0.28, "{b} has friendly staff"),
-    ("B1c_33",  "Y", 6.40, 0.010, 0.55, "{b} is a restaurant I would consider eating at in the next month"),
-    ("B1c_34",  "Y", 5.91, 0.015, 0.45, "{b} is a restaurant I intend to eat at in the next month"),
+    ("B1c_33",  "Y", 6.40, 0.010, 0.78, "{b} is a restaurant I would consider eating at in the next month"),
+    ("B1c_34",  "Y", 5.91, 0.015, 0.64, "{b} is a restaurant I intend to eat at in the next month"),
 ]
 
 codes    = [s[0] for s in STATEMENTS]
@@ -161,13 +161,17 @@ S_FACTOR = 0.62          # weight of the factor-specific component
 u = {k: RNG.normal(0, 1, N) for k in ["P", "C", "F", "S"]}
 f_latent = {k: g + S_FACTOR * u[k] for k in u}
 
-NOISE = 0.72             # per-statement idiosyncratic noise
+NOISE = 0.60             # per-statement idiosyncratic noise
 SLOPE = 1.55             # spreads latent onto the 1-10 scale
+
+# Draw each statement's idiosyncratic noise up front, so consideration can
+# borrow one of them (reputation) below.
+stmt_noise = {c: RNG.normal(0, 1, N) for c in predictors}
 
 raw = {}
 for c in predictors:
     k = factor[c]
-    z = f_latent[k] + NOISE * RNG.normal(0, 1, N)
+    z = f_latent[k] + NOISE * stmt_noise[c]
     score = mean_of[c] + SLOPE * z + yf_lift[c] * young_family
     raw[c] = score
 
@@ -179,7 +183,11 @@ cons_latent = (g
                + 0.52 * u["P"]
                + 0.27 * u["S"]
                + 0.27 * u["F"]
-               + RNG.normal(0, 0.66, N))
+               + 0.30 * stmt_noise["B1c_30"]     # reputation carries a little
+               + RNG.normal(0, 0.66, N))          # consideration-specific signal,
+# so once the halo is removed it neither survives like product nor reverses like
+# ethics -- it lands near zero, the classic "reputation is a lagging read-out of
+# consideration, not a driver of it" pattern.
 cons_latent = cons_latent / cons_latent.std()
 raw["B1c_33"] = 6.30 + 2.70 * cons_latent + yf_lift["B1c_33"] * young_family
 # Intent sits just downstream of consideration and is a touch lower.

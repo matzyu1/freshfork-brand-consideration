@@ -77,7 +77,7 @@ Excel to a defensible business recommendation.
 
 - **🌗 Halo-effect correction ([`04_halo.py`](src/04_halo.py)):** Showed that ranking
   statements by raw correlation with consideration is misleading. The 32 statements
-  correlate at **0.64** on average and a single dimension explains **65%** of their
+  correlate at **0.68** on average and a single dimension explains **70%** of their
   variance — respondents largely answer one question 32 times. Used **PCA** to size
   the shared "goodwill" dimension and showed that plain OLS on all 32 statements
   produces sign-flipped coefficients despite passing the usual VIF check.
@@ -85,13 +85,13 @@ Excel to a defensible business recommendation.
 - **⚖️ Driver analysis via factor reduction ([`05_drivers.py`](src/05_drivers.py)):**
   Reduced the 32 statements to **four near-independent factors** with **Factor
   Analysis**, then regressed consideration on those so the coefficients behave.
-  Product & experience explains **60%** of what's explainable; fame, company/ethics
+  Product & experience explains **59%** of what's explainable; fame, company/ethics
   and service split the rest. Rerun without straightliners as a sensitivity check.
 
 - **🧪 Subgroup testing done properly ([`06_subgroup.py`](src/06_subgroup.py)):**
   Young families look warmer, but parents skew young and consideration falls with age
   — so the effect had to be separated from age. Held age constant within the 35–44
-  band and confirmed a significant gap remains (**6.69 vs 6.30, t = 2.04, p = 0.042**).
+  band and confirmed a significant gap remains (**6.88 vs 6.32, t = 2.97, p = 0.003**).
   Applied a *single* factor structure to both groups so they are measured on the same
   dimensions.
 
@@ -132,12 +132,12 @@ The cleaned, analysis-ready dataset is written once to
 
 ![Consideration by age](output/charts/01_consideration_by_age.png)
 
-Mean consideration is **6.38 / 10**. About **35%** score 8–10 and would strongly
-consider FreshFork; **14%** score 1–3 and have effectively ruled it out; the middle
-half is the winnable group. Consideration **falls with age**, from 6.85 among 25–34s
+Mean consideration is **6.45 / 10**. About **36%** score 8–10 and would strongly
+consider FreshFork; **13%** score 1–3 and have effectively ruled it out; the middle
+half is the winnable group. Consideration **falls with age**, from 7.00 among 25–34s
 to around 5.3 among the over-55s, while gender makes little difference. FreshFork
-scores highest on *awareness* statements ("an established brand", 7.67) and lowest on
-*affinity* ("food I feel good about eating", 5.68): **famous and family-associated,
+scores highest on *awareness* statements ("an established brand", 7.69) and lowest on
+*affinity* ("food I feel good about eating", 5.67): **famous and family-associated,
 but not felt to be "for me".**
 
 ### 2. The halo problem — why naïve ranking fails
@@ -145,11 +145,12 @@ but not felt to be "for me".**
 ![Correlation with consideration, raw and adjusted](output/charts/02_halo_flip.png)
 
 Ranking statements by raw correlation with consideration looks convincing — the top
-ten sit between 0.71 and 0.73 — but it's an artefact of shared goodwill. When each
+ten sit between 0.72 and 0.74 — but it's an artefact of shared goodwill. When each
 respondent's own average across the 32 statements is subtracted, the picture **flips**:
-corporate claims like *ethical & responsible* (+0.59 → **−0.12**) and *contributes to
-my community* (+0.58 → **−0.14**) reverse sign, while **product and experience
-statements survive** (*enjoy visiting* holds at +0.13, *great tasting food* at +0.10).
+corporate claims like *ethical & responsible* (+0.60 → **−0.15**) and *contributes to
+my community* (+0.60 → **−0.14**) reverse sign, *has a good reputation* collapses from
++0.67 to **−0.01** (a lagging read-out, not a driver), while **product and experience
+statements survive** (*enjoy visiting* holds at +0.13, *great tasting food* at +0.12).
 Each person's own average predicts consideration at **r = 0.82**, higher than any
 single statement — they are largely answering one question 32 times.
 
@@ -160,11 +161,11 @@ single statement — they are largely answering one question 32 times.
 
 Factor analysis groups the 32 statements into **four dimensions** — product &
 experience (15 statements), company & ethics (10), fame & familiarity (4) and service
-(3). Regressing consideration on these four explains **72%** of the variation, and
-**product & experience alone takes 60%** of it.
+(3). Regressing consideration on these four explains **70%** of the variation, and
+**product & experience alone takes 59%** of it.
 
 Set that against how FreshFork currently *performs* and the mismatch is the whole
-finding: **fame scores highest (7.07) yet is a distant second in importance (16.8%);
+finding: **fame scores highest (7.08) yet is a distant second in importance (15.4%);
 product scores 6.34 and explains the most.** The brand's biggest strength is one of
 its least important drivers.
 
@@ -173,13 +174,13 @@ its least important drivers.
 ![Factor importance: young families vs everyone else](output/charts/05_young_family_importance.png)
 ![Where young families rate FreshFork differently](output/charts/06_statement_gaps.png)
 
-Young families consider FreshFork more (6.8 vs 6.1), and a significant gap **survives
-an age control** (6.69 vs 6.30 within the 35–44 band). But they don't want *different*
+Young families consider FreshFork more (6.99 vs 6.09), and a significant gap **survives
+an age control** (6.88 vs 6.32 within the 35–44 band). But they don't want *different*
 things — their factor weightings are almost identical to everyone else's. What differs
 is how warmly they already rate the brand: every factor shows a positive gap. The
 largest single-statement gaps are convenience and experience — **"makes my life easier"
-(+0.70)**, "a place I enjoy visiting" (+0.70) — while the two *smallest* gaps of all are
-**"an established brand" (+0.20)** and **"a place for kids and families" (+0.19)**.
+(+0.72)**, "a place I enjoy visiting" (+0.70) — while the two *smallest* gaps of all are
+**"an established brand" (+0.20)** and **"a place for kids and families" (+0.22)**.
 Parents don't believe FreshFork is a family place any *more* than anyone else does.
 That message is settled; **convenience and enjoyment are where a warm audience can
 still be moved.**
@@ -193,7 +194,7 @@ still be moved.**
 - **The halo effect hides the truth.** Naïve driver rankings are dominated by general
   goodwill; correcting for it reverses the corporate/ethics claims and leaves product
   and experience as the real levers.
-- **Product & experience is the growth engine** — 60% of explained consideration, and
+- **Product & experience is the growth engine** — 59% of explained consideration, and
   the dimension FreshFork under-performs on relative to its importance.
 - **Young families are the warmest audience**, and it isn't purely an age artefact.
 - **They want the same things, just warmer.** The winning message isn't "we're for

@@ -55,8 +55,8 @@ children can fall in the same age band. The cross-tab confirms the column behave
 as a child count and that blank means no children under 16.
 
 ## Straightlining
-94 respondents (4.0%) gave an identical answer to all 34 statements. They split
-into distinct groups: 32 answered 10 throughout, 32 answered 5 throughout, and 5
+95 respondents (4.0%) gave an identical answer to all 34 statements. They split
+into distinct groups: 33 answered 10 throughout, 32 answered 5 throughout, and 5
 answered 1 throughout, with the remainder scattered.
 
 The 5s are plausible: on a 10-point scale a respondent genuinely indifferent to
@@ -64,7 +64,7 @@ FreshFork could legitimately answer at the midpoint throughout. The 10s are hard
 to defend, since they include perfect agreement on statements such as whether
 FreshFork is a good employer, where 16% of the sample had no view at all.
 
-All 94 were kept in the main analysis. The group mixes plausible indifference with
+All 95 were kept in the main analysis. The group mixes plausible indifference with
 likely disengagement, the two cannot be separated cleanly, the total is under 4%
 of the sample, and removing respondents on a judgement call needs stronger grounds
 than this. They were flagged and the driver analysis was rerun without them as a

@@ -8,6 +8,8 @@ calculated here; every number should match what 04, 05 and 06 printed.
 
 import pandas as pd
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")          # headless backend: this script only writes PNGs
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 import seaborn as sns
@@ -102,18 +104,31 @@ for v in SHORT:
 flip = pd.DataFrame(rows)
 print(flip.round(2).to_string())
 
+def tier_colour(rel):
+    # Survives the halo removal (blue), vanishes to nothing (grey), or reverses
+    # (red). Thresholds are a judgement call, not a standard.
+    if rel > 0.05:
+        return ACCENT
+    if rel > -0.05:
+        return GREY
+    return RED
+
 plt.figure(figsize=(9, 6))
 for _, r in flip.iterrows():
-    # Survives the halo removal, collapses to nothing, or reverses. Thresholds
-    # are a judgement call, not a standard.
-    if r["relative"] > 0.05:
-        colour = ACCENT
-    elif r["relative"] > -0.05:
-        colour = GREY
-    else:
-        colour = RED
-    plt.plot([0, 1], [r["raw"], r["relative"]], "-o", color=colour, linewidth=2)
-    plt.text(1.03, r["relative"], r["statement"], va="center", fontsize=11)
+    plt.plot([0, 1], [r["raw"], r["relative"]], "-o",
+             color=tier_colour(r["relative"]), linewidth=2)
+
+# Declutter the right-hand labels: keep them in value order but force a minimum
+# vertical gap so they never overlap when two lines land close together.
+order = flip.sort_values("relative", ascending=False).reset_index(drop=True)
+min_gap = 0.052
+label_y = order["relative"].tolist()
+for i in range(1, len(label_y)):
+    if label_y[i] > label_y[i - 1] - min_gap:
+        label_y[i] = label_y[i - 1] - min_gap
+for i, row in order.iterrows():
+    plt.text(1.04, label_y[i], row["statement"], va="center", fontsize=11,
+             color=tier_colour(row["relative"]))
 
 plt.axhline(0, color="#555555", linewidth=1.2, linestyle="--")
 plt.xticks([0, 1], ["Raw correlation", "After removing\ngeneral goodwill"])
